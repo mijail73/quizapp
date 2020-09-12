@@ -91,5 +91,28 @@ if (isset($_POST['loginButton'])) {
                 exit();
             }
         }
+    } else {
+        $query = "SELECT 'email', 'firstname', 'username', 'password' FROM
+            'users' WHERE 'email' = '$email'";
+        $result = mysqli_query($con, $query);
+        if(mysqli_num_rows($result) < 1) {
+            $message .= 'This email is not registered';
+                header("Location: http://localhost/quizapp/login.php?message='$message'");
+                exit();
+        } else {
+            $row = mysqli_fetch_array($result);
+            $firstname = $row['firstname'];
+            $email = $row['email'];
+            $username = $row['username'];
+            $hashedPassword = $row['password'];
+            if(md5($password) === $hashedPassword) {
+                $_SESSION['email'] = $email;
+                header("Location: http://localhost/quizapp/quizhomepage.php");
+                exit();
+            }
+        }
     }
+} else {
+    header("Location: http://localhost/quizapp/login.php");
+    exit();
 }
