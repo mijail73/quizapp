@@ -13,6 +13,34 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">The Quiz App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="http://localhost/quizapp/quizhomepage.php">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost/quizapp/check_results.php">Check Results</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost/quizapp/upload_subject.php">Add Questions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost/quizapp/delete_subject.php">Delete Questions</a>
+                </li>
+            </ul>
+            <span class="navbar-text">
+                User Logged in:
+            </span>
+            <span class="navbar-text">
+                <a class="nav-link" href="logout.php">Logout</a>
+            </span>
+        </div>
+    </nav>
     <div class="container" style="margin-top:20px;">
         <form id="loginForm" action="handlers/login_handler.php" method="POST" name="loginForm">
             <div class="form-group row">

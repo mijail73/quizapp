@@ -1,39 +1,36 @@
 <?php
 include("includes/header.php");
-if (isset($_GET['message']))
-    $message = $_GET['message'];
-$subjectOptions = array();
-$query = "SELECT DISTINCT 'subject' FROM 'questions'";
-$result = mysqli_query($con, $result);
-while ($row = mysqli_fetch_array($result))
-    $subjectOptions[] = $row['subject'];
-$totalQuestions = mysqli_num_rows($result);
-$questionNumber = (int)$totalQuestions + 1;
+$subjectOptions = array(
+    "english" => "english",
+    "maths" => "maths",
+    "physics" => "physics",
+    "biology" => "biology",
+    "current affairs" => "current affairs",
+    "chemistry" => "chemistry",
+    "general knowledge" => "general knowledge",
+    "history" => "history",
+    "politics" => "politics",
+    "The news" => "The news"
+);
+
 ?>
 <div class="container" style="margin-top:20px;">
-    <h3 style="text-align: center; margin-bottom: 25px;">Test your knowledge</h3>
-    <div style="text-align: center; font-weight: bold;">
-        <p><?php if (isset($message)) echo $message; ?></p>
-    </div>
-    <form id="quizForm" action="handlers/login_handler.php" method="POST" name="quizForm">
+    <form id="indexForm" action="quiz.php" method="POST" name="uploadSubjectForm">
         <input type="hidden" name="userLoggedIn" value="<?php echo $userLoggedIn; ?>">
         <div class="form-group row">
-            <label for="subjects" class="col-sm-2 col-form-label">Choose subject</label>
+            <label for="subjects" class="col-sm-2 col-form-label">Choose subject to upload</label>
             <div class="col-sm-10">
                 <select type="select" class="form-control" id="subject" name="subject">
                     <?php
-                    for ($i = 0; $i < count($subjectOptions); $i++) {
-                    ?>
-                        <option value="<?php echo $subjectOptions[$i]; ?>"><?php echo $subjectOptions[$i]; ?></option>
-                    <?php
-                    }
-                    ?>
+                    foreach ($subjectOptions as $key => $value) { ?>
+                        <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                    <?php } ?>
                 </select>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary" id="submitSubject" name="submitSubject">Proceed</button>
+                <button type="submit" class="btn btn-primary" id="submitUploadSubject" name="submitUploadSubject">Proceed</button>
             </div>
         </div>
     </form>
